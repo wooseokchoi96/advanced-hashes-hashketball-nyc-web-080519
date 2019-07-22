@@ -138,10 +138,17 @@ end
 def winning_team
   home_score = 0 
   away_score = 0 
-  game_hash.each do |
-  
-  
-  
+  game_hash.each do |team_h_a, team_info|
+    team_info[:players].each do |players|
+      players.each do |player_name, player_info|
+        if team_h_a == :home 
+          home_score += player_info[:points]
+        else
+          away_score += player_info[:points]
+        end
+      end
+    end
+  end
   if home_score > away_score
     return game_hash[:home][:team_name]
   else
